@@ -3,10 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Blog API")
 
-from routes.auth import auth_router
 
-# 注册用户认证路由
-app.include_router(auth_router)
+
+from routes import auth, user
+
+app.include_router(auth.router)  # 现在 router 就有接口了
+app.include_router(user.router)
+
 
 from database import engine, Base
 from models import User
